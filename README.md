@@ -169,9 +169,8 @@ Once you have a functioning project, consider adding more features to test your 
 * Write a Gradle task that starts the GCE dev server, runs all the Android tests, and shuts down the dev server.
 
 
-PERSONAL NOTE:
-I affirm that I have read Udacity’s definition of plagiarism, and that this submission is my own work.
+### PERSONAL NOTE:
 
-I have correctly attributed all content obtained from other sources, such as websites, books, forums, blogs, GitHub repos, etc.
-
-I understand that Udacity actively checks submissions for plagiarism and that failure to adhere to the Udacity Honor Code may result in the cancellation of my enrollment.
+* I affirm that I have read Udacity’s definition of plagiarism, and that this submission is my own work.
+* I have correctly attributed all content obtained from other sources, such as websites, books, forums, blogs, GitHub repos, etc.
+* I understand that Udacity actively checks submissions for plagiarism and that failure to adhere to the Udacity Honor Code may result in the cancellation of my enrollment.
