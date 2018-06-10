@@ -20,9 +20,12 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -32,9 +35,9 @@ public class JokeLoaderActivityTest {
     public ActivityTestRule<JokeLoaderActivity> mActivityTestRule = new ActivityTestRule<>(JokeLoaderActivity.class);
 
     @Test
-    public void jokeLoaderActivityTest() {
+    public void jokeLoaderActivityTest2() {
         try {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -44,11 +47,10 @@ public class JokeLoaderActivityTest {
                         childAtPosition(
                                 allOf(withId(R.id.fragment),
                                         childAtPosition(
-                                                withId(android.R.id.content),
+                                                withClassName(is("android.widget.FrameLayout")),
                                                 0)),
                                 1),
                         isDisplayed()));
-
         appCompatButton.perform(click());
 
         try {
@@ -57,10 +59,24 @@ public class JokeLoaderActivityTest {
             e.printStackTrace();
         }
 
-        ViewInteraction textView = onView(
-                allOf(withId(R.id.tv_answer), withText("Thunderwear!"),
+        ViewInteraction imageButton = onView(
+                allOf(withContentDescription("Interstitial close button"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("com.google.android.gms.ads.internal.overlay.h")),
+                                        1),
+                                0),
                         isDisplayed()));
-        textView.check(matches(withText("Thunderwear!")));
+        imageButton.perform(click());
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction textView = onView(allOf(withId(R.id.tv_question), isDisplayed()));
+        textView.check(matches(isDisplayed()));
 
     }
 
